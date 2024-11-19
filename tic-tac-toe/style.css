@@ -1,0 +1,31 @@
+/* Fuente */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+/* Variables */
+:root {
+  --black-color: #000000;
+  --white-color: #ffffff;
+  font-size: 12px;
+}
+
+/* Estilos generales iniciales */
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  color: var(--black-color);
+  background-color: var(--white-color);
+}
+
+/* Estilos responsive iniciales */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
