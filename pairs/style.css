@@ -1,0 +1,82 @@
+/* Fuente */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+/* Variables */
+:root {
+  --black-color: rgb(0, 0, 0);
+  --white-color: rgb(255, 255, 255);
+  --blue1-color: rgb(47, 85, 151);
+  --blue2-color: rgb(107, 155, 193);
+  --blue3-color: rgb(223, 230, 244);
+  --black-thick-border: 0.5rem solid var(--black-color);
+  --black-thin-border: 0.25rem solid var(--black-color);
+  --white-border: 0.5rem solid var(--white-color);
+  --blue1-border: 0.5rem solid var(--blue1-color);
+  --white-filter: invert(1);
+  --blue1-filter: brightness(0) saturate(100%) invert(33%) sepia(26%)
+    saturate(1414%) hue-rotate(179deg) brightness(87%) contrast(93%);
+  font-size: 12px;
+}
+
+/* Tamaño de la fuente */
+@media screen and (max-width: 768px) {
+  :root {
+    font-size: 6px;
+  }
+}
+
+/* Estilos generales iniciales */
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  color: var(--black-color);
+  background-color: var(--blue1-color);
+}
+
+/* Estilos responsive iniciales */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.grid {
+  display: grid;
+}
+
+/* Estilos generales */
+.oculto {
+  display: none;
+}
+
+.negrita {
+  font-weight: bold;
+}
+
+/* Anchura mínima */
+body {
+  min-width: 425px;
+}
+
+/* Encabezados */
+h1 {
+  font-size: 3.5rem;
+  color: var(--white-color);
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Enlaces */
+a {
+  text-decoration: none;
+}
