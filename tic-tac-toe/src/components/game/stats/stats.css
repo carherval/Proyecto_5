@@ -1,0 +1,26 @@
+/* Estadísticas del juego */
+/* Botonera de las estadísticas */
+@media screen and (max-width: 425px) {
+  .btn-lnk {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 426px) {
+  .btn-lnk {
+    width: 50%;
+  }
+}
+
+.btn-lnk {
+  border: var(--black-thin-border);
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 2rem;
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+.btn-lnk:active {
+  box-shadow: 5px 5px 10px var(--black-color);
+}

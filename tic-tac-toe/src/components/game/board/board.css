@@ -1,0 +1,100 @@
+/* Tablero de juego */
+/* Estilos responsive */
+.board > div {
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  grid-template-areas:
+    'c0 c1 c2'
+    'c3 c4 c5'
+    'c6 c7 c8';
+}
+
+.board .c0,
+.board .c1,
+.board .c2,
+.board .c3,
+.board .c4,
+.board .c5,
+.board .c6,
+.board .c7,
+.board .c8 {
+  border: var(--black-thick-border);
+}
+
+.board .c0 {
+  border-top: 0;
+  border-left: 0;
+  /* Estilos responsive */
+  grid-area: c0;
+}
+
+.board .c1 {
+  border-top: 0;
+  /* Estilos responsive */
+  grid-area: c1;
+}
+
+.board .c2 {
+  border-top: 0;
+  border-right: 0;
+  /* Estilos responsive */
+  grid-area: c2;
+}
+
+.board .c3 {
+  border-left: 0;
+  /* Estilos responsive */
+  grid-area: c3;
+}
+
+/* Estilos responsive */
+.board .c4 {
+  grid-area: c4;
+}
+
+.board .c5 {
+  border-right: 0;
+  /* Estilos responsive */
+  grid-area: c5;
+}
+
+.board .c6 {
+  border-bottom: 0;
+  border-left: 0;
+  /* Estilos responsive */
+  grid-area: c6;
+}
+
+.board .c7 {
+  border-bottom: 0;
+  /* Estilos responsive */
+  grid-area: c7;
+}
+
+.board .c8 {
+  border-right: 0;
+  border-bottom: 0;
+  /* Estilos responsive */
+  grid-area: c8;
+}
+
+.board > div > div {
+  width: 10rem;
+  height: 10rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.board > div img {
+  width: 100%;
+  background-color: transparent;
+}
+
+/* Color de las fichas del jugador humano */
+.board > div img.hum {
+  filter: var(--blue1-filter);
+}
+
+/* Color de las fichas del jugador máquina */
+.board > div img.com {
+  filter: var(--white-filter);
+}

@@ -1,0 +1,23 @@
+/* Mensajes del juego */
+.message {
+  border: var(--blue1-border);
+  padding: 3rem;
+  background-color: var(--white-color);
+}
+
+.message > p {
+  width: 100%;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--blue1-color);
+  background-color: var(--white-color);
+  /* Estilos responsive */
+  align-content: baseline;
+  gap: 0.5rem;
+}
+
+.message img {
+  width: 1.5rem;
+  background-color: transparent;
+  filter: var(--blue1-filter);
+}

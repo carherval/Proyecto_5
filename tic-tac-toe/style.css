@@ -3,9 +3,26 @@
 
 /* Variables */
 :root {
-  --black-color: #000000;
-  --white-color: #ffffff;
+  --black-color: rgb(0, 0, 0);
+  --white-color: rgb(255, 255, 255);
+  --blue1-color: rgb(47, 85, 151);
+  --blue2-color: rgb(107, 155, 193);
+  --blue3-color: rgb(223, 230, 244);
+  --black-thick-border: 0.5rem solid var(--black-color);
+  --black-thin-border: 0.25rem solid var(--black-color);
+  --white-border: 0.5rem solid var(--white-color);
+  --blue1-border: 0.5rem solid var(--blue1-color);
+  --white-filter: invert(1);
+  --blue1-filter: brightness(0) saturate(100%) invert(33%) sepia(26%)
+    saturate(1414%) hue-rotate(179deg) brightness(87%) contrast(93%);
   font-size: 12px;
+}
+
+/* Tamaño de la fuente */
+@media screen and (max-width: 768px) {
+  :root {
+    font-size: 6px;
+  }
 }
 
 /* Estilos generales iniciales */
@@ -15,9 +32,9 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: var(--black-color);
-  background-color: var(--white-color);
+  background-color: var(--blue1-color);
 }
 
 /* Estilos responsive iniciales */
@@ -28,4 +45,231 @@
   align-items: center;
   text-align: center;
   gap: 2rem;
+}
+
+.grid {
+  display: grid;
+}
+
+/* Estilos generales */
+.oculto {
+  display: none;
+}
+
+.negrita {
+  font-weight: bold;
+}
+
+/* Anchura mínima */
+body {
+  min-width: 425px;
+}
+
+/* Encabezados */
+h1 {
+  font-size: 3.5rem;
+  color: var(--white-color);
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Enlaces */
+a {
+  text-decoration: none;
+}
+
+/* Zona de juego */
+.game {
+  padding: 2.5rem 0;
+  background-color: var(--blue2-color);
+  /* Estilos responsive */
+  flex-direction: column;
+  justify-content: start;
+  gap: 5rem;
+}
+
+.game * {
+  background-color: var(--blue2-color);
+}
+
+/* Secciones de la zona de juego */
+@media screen and (max-width: 425px) {
+  .game > section {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 426px) {
+  .game > section {
+    width: 50%;
+  }
+}
+
+/* Estilos responsive */
+.game > section {
+  gap: 5rem;
+}
+
+/* Estadísticas del juego */
+/* Botonera de las estadísticas */
+.game > div {
+  width: 100%;
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+/* Estilos responsive */
+.stats {
+  flex-direction: column;
+}
+
+/* Tablas de las estadísticas */
+.stats > article {
+  width: 100%;
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+.stats table {
+  border: var(--black-thick-border);
+  border-top: var(--black-thin-border);
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.stats h2 {
+  border: var(--black-thick-border);
+  border-bottom: var(--black-thin-border);
+  padding: 1rem;
+  background-color: var(--white-color);
+}
+
+.stats tr > * {
+  width: 25%;
+  border: var(--black-thin-border);
+  padding: 1rem;
+  text-wrap-mode: nowrap;
+}
+
+.stats th {
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+/* Filas impares */
+.stats tr:nth-child(odd) > td {
+  background-color: var(--white-color);
+}
+
+/* Filas pares */
+.stats tr:nth-child(even) > td {
+  background-color: var(--blue3-color);
+}
+
+.stats td > img {
+  width: 1.5rem;
+  background-color: transparent;
+  vertical-align: middle;
+}
+
+/* Tablero y configuración del juego */
+/* Estilos responsive */
+@media screen and (max-width: 425px) {
+  .board-config {
+    flex-direction: column-reverse;
+  }
+}
+
+/* Tablero de juego */
+@media screen and (max-width: 425px) {
+  .board .grid > div {
+    width: 13.5rem;
+    height: 13.5rem;
+  }
+}
+
+/* Configuración del juego */
+@media screen and (max-width: 425px) {
+  .config {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 426px) {
+  .config {
+    width: 50%;
+  }
+}
+
+.config > form {
+  width: 100%;
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+.config fieldset {
+  width: 100%;
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+.config fieldset > * {
+  width: 100%;
+}
+
+.config legend {
+  padding-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Estilos responsive */
+.config fieldset > div {
+  justify-content: space-between;
+}
+
+/* Mensajes emergentes de SweetAlert2 */
+.swal2-popup {
+  border: var(--blue1-border);
+  background-color: var(--white-color);
+  position: fixed;
+}
+
+@media screen and (max-width: 425px) {
+  .swal2-popup {
+    top: 50rem;
+  }
+}
+
+@media screen and (min-width: 426px) {
+  .swal2-popup {
+    top: 25rem;
+  }
+}
+
+.swal2-title {
+  color: var(--blue1-color);
+  background-color: var(--white-color);
+}
+
+.swal2-actions {
+  background-color: var(--white-color);
+  /* Estilos responsive */
+  gap: 2rem;
+}
+
+.swal2-confirm,
+.swal2-confirm:hover {
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+.swal2-cancel,
+.swal2-cancel:hover {
+  color: var(--white-color);
+  background-color: var(--blue1-color);
 }
