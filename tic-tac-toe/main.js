@@ -590,7 +590,7 @@ function resetGame() {
  * @returns Código HTML
  */
 function getImgTag(image) {
-  return `<img src="assets/${image.id}.png" alt="${image.title}" title="${image.title}" />`
+  return `<img src="assets/images/${image.id}.png" alt="${image.title}" title="${image.title}" />`
 }
 
 /* Mensajes emergentes de SweetAlert2 */

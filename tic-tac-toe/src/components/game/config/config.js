@@ -42,7 +42,7 @@ function getRadioButtonInput(id, name, labelText) {
  * @returns Código HTML
  */
 function getImageRadioButtonInput(id, name, labelImg) {
-  return `<input class="rd-btn" type="radio" id="${id}" name="${name}" value="${id}" /><label class="flex" for="${id}" title="${labelImg.title}"><img src="assets/${labelImg.id}.png" alt="${labelImg.title}" /></label>`
+  return `<input class="rd-btn" type="radio" id="${id}" name="${name}" value="${id}" /><label class="flex" for="${id}" title="${labelImg.title}"><img src="assets/images/${labelImg.id}.png" alt="${labelImg.title}" /></label>`
 }
 
 /**

@@ -182,7 +182,7 @@ export function printBoard(tokens) {
       board[index].token !== null
         ? `<img class="${
             board[index].token === playerToken.hum ? 'hum' : 'com'
-          }" src="assets/${tokens[board[index].token].id}.png" alt="${
+          }" src="assets/images/${tokens[board[index].token].id}.png" alt="${
             tokens[board[index].token].title
           }" title="${tokens[board[index].token].title}" />`
         : ''
