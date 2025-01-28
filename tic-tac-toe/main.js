@@ -191,7 +191,9 @@ function getStatHeaderRow(idPrefix) {
  * @returns Código HTML
  */
 function getNoStatsRow(idPrefix) {
-  let statNoInfoRow = '<tr><td colspan="4" headers="'
+  let statNoInfoRow = `<tr><td colspan="${
+    Object.keys(STAT_HEADERS).length
+  }" headers="`
 
   for (const statHeader in STAT_HEADERS) {
     statNoInfoRow += `${idPrefix}-${statHeader} `
@@ -232,7 +234,7 @@ function getGameConfigContent() {
     true
   )}</div></fieldset><fieldset class="flex" id="submit"><legend class="oculto">${NEW_GAME_LABEL}</legend>${getSubmitButton(
     NEW_GAME_LABEL
-  )}</fieldset></form></div></section>`
+  )}</fieldset></form></div>`
 }
 
 // Función que crea los eventos de la zona de juego
@@ -358,9 +360,15 @@ function printStats() {
  * @returns Booleano
  */
 function isInitializedGameSettings() {
-  const diff = document.querySelector('input[name="diff"]:checked')
-  const token = document.querySelector('input[name="token"]:checked')
-  const turn = document.querySelector('input[name="turn"]:checked')
+  const diff = document.querySelector(
+    `input[name="${STAT_HEADERS.diff.id}"]:checked`
+  )
+  const token = document.querySelector(
+    `input[name="${STAT_HEADERS.token.id}"]:checked`
+  )
+  const turn = document.querySelector(
+    `input[name="${STAT_HEADERS.turn.id}"]:checked`
+  )
 
   if (diff === null || token === null || turn === null) {
     showAlertDialog(
@@ -411,7 +419,7 @@ function changeTurn() {
 function playComTurn() {
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-  const playAsyncComTurn = async () => {
+  const playComTurnAsync = async () => {
     // Tiempo de espera (milisegundos) para la respuesta del jugador máquina
     await delay(500)
     board[getComCell()].token = playerToken.com
@@ -426,7 +434,7 @@ function playComTurn() {
     setTimeout(() => checkWinnerPlayer(), 0)
   }
 
-  playAsyncComTurn()
+  playComTurnAsync()
 }
 
 /**
@@ -540,7 +548,6 @@ function endGame(winnerPlayer) {
       : 'Partida empatada',
     resetGame
   )
-
   saveStats(
     gameSettings.difficulty,
     playerToken.hum,
@@ -565,9 +572,15 @@ function resetGame() {
   printBoard(TOKENS)
 
   // Reinicio de la configuración del juego
-  document.querySelector('input[name="diff"]:checked').checked = false
-  document.querySelector('input[name="token"]:checked').checked = false
-  document.querySelector('input[name="turn"]:checked').checked = false
+  document.querySelector(
+    `input[name="${STAT_HEADERS.diff.id}"]:checked`
+  ).checked = false
+  document.querySelector(
+    `input[name="${STAT_HEADERS.token.id}"]:checked`
+  ).checked = false
+  document.querySelector(
+    `input[name="${STAT_HEADERS.turn.id}"]:checked`
+  ).checked = false
 
   gameSettings.initialTurn = gameSettings.difficulty = null
   playerToken.com = playerToken.hum = null

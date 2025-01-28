@@ -95,7 +95,7 @@ export function saveStats(statDiff, statToken, statTurn, gameResult) {
 
 /**
  * Función que devuelve la fecha actual en formato dd/mm/yyyy hh:mm
- * @returns Fecha actual
+ * @returns Fecha actual formateada
  */
 function getCurrentDate() {
   const currentDate = new Date()
