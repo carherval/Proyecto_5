@@ -129,7 +129,7 @@ function createMainTag() {
  * @returns Código HTML
  */
 function getGameStatContent() {
-  return getStatButtonBoxContent() + getStatTableContent()
+  return `${getStatButtonBoxContent()}${getStatTableContent()}`
 }
 
 /**
