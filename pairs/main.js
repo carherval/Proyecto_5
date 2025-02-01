@@ -540,6 +540,8 @@ function resetGame() {
   // Reinicio del tablero de juego
   boardCard.flipped = boardCard.card = boardCard.pos = null
 
+  // resetCardPair()
+  // resetBoard()
   createBoard()
   printBoard(DIFFICULTIES[gameDifficulty].className)
   addClassNameToDialog(DIFFICULTIES[gameDifficulty].className)
