@@ -5,7 +5,7 @@ import './messages.css'
  * @returns Código HTML
  */
 export function getGameMessageContent() {
-  return `<section class="flex message"><p class="flex"></p></section>`
+  return '<section class="flex message"><p class="flex"></p></section>'
 }
 
 /**

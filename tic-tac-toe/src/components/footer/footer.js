@@ -9,5 +9,6 @@ export function createFooterTag(footerHeight) {
 
   footer.classList.add('flex', 'footer')
   footer.style = `height: ${footerHeight}rem;`
-  footer.innerHTML = `<p>&#169; Diseñado y creado por <span class="negrita">Carlos Hernández</span></p>`
+  footer.innerHTML =
+    '<p>&#169; Diseñado y creado por <span class="negrita">Carlos Hernández</span></p>'
 }
