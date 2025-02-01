@@ -12,16 +12,30 @@
   --black-thin-border: 0.25rem solid var(--black-color);
   --white-border: 0.5rem solid var(--white-color);
   --blue1-border: 0.5rem solid var(--blue1-color);
-  --white-filter: invert(1);
-  --blue1-filter: brightness(0) saturate(100%) invert(33%) sepia(26%)
-    saturate(1414%) hue-rotate(179deg) brightness(87%) contrast(93%);
-  font-size: 12px;
 }
 
 /* Tamaño de la fuente */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   :root {
     font-size: 6px;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 1440px) {
+  :root {
+    font-size: 9px;
+  }
+}
+
+@media screen and (min-width: 1441px) and (max-width: 2559px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  :root {
+    font-size: 9px;
   }
 }
 
@@ -47,10 +61,6 @@
   gap: 2rem;
 }
 
-.grid {
-  display: grid;
-}
-
 /* Estilos generales */
 .oculto {
   display: none;
@@ -62,7 +72,7 @@
 
 /* Anchura mínima */
 body {
-  min-width: 425px;
+  min-width: 426px;
 }
 
 /* Encabezados */
@@ -76,7 +86,338 @@ h2 {
   font-weight: bold;
 }
 
+/* Tablas */
+caption {
+  font-weight: bold;
+}
+
 /* Enlaces */
 a {
   text-decoration: none;
+}
+
+/* Zona de juego */
+.game {
+  padding: 2.5rem 0;
+  background-color: var(--blue2-color);
+  /* Estilos responsive */
+  flex-direction: column;
+  justify-content: start;
+}
+
+.game * {
+  background-color: var(--blue2-color);
+}
+
+/* Secciones de la zona de juego */
+@media screen and (max-width: 768px) {
+  .game > section {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 2559px) {
+  .game > section {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .game > section {
+    width: 25%;
+  }
+}
+
+/* Estadísticas del juego */
+/* Botonera de las estadísticas */
+.game > div {
+  width: 100%;
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .btn-lnk {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 2559px) {
+  .btn-lnk {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .btn-lnk {
+    width: 25%;
+  }
+}
+
+/* Estilos responsive */
+.stats {
+  flex-direction: column;
+}
+
+/* Tablas de las estadísticas */
+.stats > article {
+  width: 100%;
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+.stats table {
+  border: var(--black-thick-border);
+  border-top: var(--black-thin-border);
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.stats caption {
+  border: var(--black-thick-border);
+  border-bottom: var(--black-thin-border);
+  padding: 1rem;
+  background-color: var(--white-color);
+}
+
+.stats caption * {
+  background-color: var(--white-color);
+}
+
+.stats tr > * {
+  width: 50%;
+  border: var(--black-thin-border);
+  padding: 1rem;
+  text-wrap-mode: nowrap;
+}
+
+.stats th {
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+/* Filas impares */
+.stats tr:nth-child(odd) > td {
+  background-color: var(--white-color);
+}
+
+/* Filas pares */
+.stats tr:nth-child(even) > td {
+  background-color: var(--blue3-color);
+}
+
+/* Filas destacadas */
+.stats tr.highlighted > td {
+  background-color: var(--blue2-color);
+}
+
+/* Configuración y tablero de juego */
+.game .config-board {
+  width: 100%;
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+/* Configuración del juego */
+@media screen and (max-width: 768px) {
+  .config {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 2559px) {
+  .config {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .config {
+    width: 25%;
+  }
+}
+
+.config > form {
+  width: 100%;
+  /* Estilos responsive */
+  align-items: baseline;
+}
+
+.config fieldset {
+  width: 100%;
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+.config fieldset > * {
+  width: 100%;
+}
+
+.config legend {
+  padding-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Estilos responsive */
+.config fieldset > div {
+  justify-content: space-between;
+}
+
+/* Tablero de juego */
+.board {
+  width: 100%;
+}
+
+/* Estilos responsive */
+.board > div {
+  gap: 1rem;
+}
+
+@media screen and (max-width: 425px) {
+  .board .s-size {
+    width: 55%;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .board .s-size {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .board .s-size {
+    width: 35%;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 2559px) {
+  .board .s-size {
+    width: 25%;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .board .s-size {
+    width: 15%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .board .m-size {
+    width: 55%;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .board .m-size {
+    width: 65%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .board .m-size {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 2559px) {
+  .board .m-size {
+    width: 35%;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .board .m-size {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .board .l-size {
+    width: 55%;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .board .l-size {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .board .l-size {
+    width: 65%;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 2559px) {
+  .board .l-size {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .board .l-size {
+    width: 27.5%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .board div.flip-card {
+    width: 9rem;
+    height: 9rem;
+  }
+}
+
+/* Mensajes emergentes de SweetAlert2 */
+.swal2-popup {
+  border: var(--blue1-border);
+  background-color: var(--white-color);
+  position: fixed;
+}
+
+@media screen and (max-width: 425px) {
+  .s-size .swal2-popup {
+    top: 35rem;
+  }
+
+  .m-size .swal2-popup {
+    top: 45rem;
+  }
+
+  .l-size .swal2-popup {
+    top: 55rem;
+  }
+}
+
+@media screen and (min-width: 426px) {
+  .swal2-popup {
+    top: 30rem;
+  }
+}
+
+.swal2-title {
+  color: var(--blue1-color);
+  background-color: var(--white-color);
+}
+
+.swal2-actions {
+  background-color: var(--white-color);
+  /* Estilos responsive */
+  gap: 2rem;
+}
+
+.swal2-confirm,
+.swal2-confirm:hover {
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+.swal2-cancel,
+.swal2-cancel:hover {
+  color: var(--white-color);
+  background-color: var(--blue1-color);
 }
