@@ -401,7 +401,7 @@ function checkPair(isDelay) {
         // Si las cartas de la pareja son iguales se dejan descubiertas y se marcan como tal
         if (!isSameCardInCardPair()) {
           child.classList.toggle('oculto')
-          child.parentElement.title = CARD_REVERSE
+          child.parentElement.title = CARD_REVERSE.title
         } else {
           board[card.pos].flipped = true
         }

@@ -1,6 +1,7 @@
 import './board.css'
 
-export const CARD_REVERSE = 'Reverso de la carta'
+// Reverso de las cartas del juego
+export const CARD_REVERSE = { id: 'reverso', title: 'Reverso de la carta' }
 
 // Carta del juego
 export const boardCard = { pos: null, card: null, flipped: null }
@@ -45,14 +46,13 @@ export function printBoard(className) {
  * @returns Código HTML
  */
 function getCardToPrint(card) {
-  return `<div class="flex flip-card" id="${
-    card.pos
-  }" title="${CARD_REVERSE}"><div class="flex flip-card-front oculto">${getImgTag(
+  return `<div class="flex flip-card" id="${card.pos}" title="${
+    CARD_REVERSE.title
+  }"><div class="flex flip-card-front oculto">${getImgTag(
     card.card
-  )}</div><div class="flex flip-card-back">${getImgTag({
-    id: 'power',
-    title: CARD_REVERSE
-  })}</div></div>`
+  )}</div><div class="flex flip-card-back">${getImgTag(
+    CARD_REVERSE
+  )}</div></div>`
 }
 
 /**
