@@ -167,10 +167,10 @@ a {
 }
 
 .stats table {
+  width: 100%;
   border: var(--black-thick-border);
   border-top: var(--black-thin-border);
   border-collapse: collapse;
-  width: 100%;
 }
 
 .stats caption {

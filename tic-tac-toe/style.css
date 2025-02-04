@@ -79,7 +79,7 @@
 
 /* Anchura mínima */
 body {
-  min-width: 425px;
+  min-width: 426px;
 }
 
 /* Encabezados */
@@ -175,10 +175,10 @@ a {
 }
 
 .stats table {
+  width: 100%;
   border: var(--black-thick-border);
   border-top: var(--black-thin-border);
   border-collapse: collapse;
-  width: 100%;
 }
 
 .stats h2 {
