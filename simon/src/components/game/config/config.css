@@ -1,0 +1,38 @@
+/* Configuración del juego */
+/* Input de tipo radio button */
+.rd-btn {
+  display: none;
+}
+
+.rd-btn + label {
+  width: 100%;
+  border: var(--black-thin-border);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background-color: var(--white-color);
+  cursor: pointer;
+}
+
+.rd-btn:checked + label {
+  width: 100%;
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+/* Botón */
+.btn {
+  border: var(--black-thin-border);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  font-size: 2rem;
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn:active {
+  box-shadow: 5px 5px 10px var(--black-color);
+}

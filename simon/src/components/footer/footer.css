@@ -1,0 +1,10 @@
+/* Pie */
+.footer {
+  border-top: var(--white-border);
+  padding: 2rem;
+}
+
+.footer * {
+  font-size: 2.5rem;
+  color: var(--white-color);
+}

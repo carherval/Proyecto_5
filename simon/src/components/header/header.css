@@ -1,0 +1,5 @@
+/* Cabecera */
+.header {
+  border-bottom: var(--white-border);
+  padding: 2rem;
+}
