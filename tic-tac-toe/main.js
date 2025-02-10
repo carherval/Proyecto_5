@@ -96,9 +96,9 @@ const DIALOG_LABELS = {
 const gameSettings = { difficulty: null, initialTurn: null }
 
 // Indicador de partida iniciada
-let startedGame = false
+let isStartedGame = false
 // Indicador del turno del jugador humano
-let humTurn = false
+let isHumTurn = false
 // Contador de turnos
 let turnCounter = 0
 
@@ -133,7 +133,7 @@ function getGameStatContent() {
 }
 
 /**
- * Función que devuelve el contenido de la botonera de las estadísticas
+ * Función que devuelve el contenido de la botonera de las estadísticas del juego
  * @returns Código HTML
  */
 function getStatButtonBoxContent() {
@@ -251,6 +251,11 @@ function addGameStatEventListeners() {
     .querySelectorAll(`#${STAT_LABELS.view.id}, #${STAT_LABELS.back.id}`)
     .forEach((elem) => {
       elem.addEventListener('click', function () {
+        // Se actualiza el contenido de las tablas de las estadísticas del juego en el caso de que el local storage sea eliminado manualmente
+        if (elem.id === STAT_LABELS.view.id) {
+          printStats()
+        }
+
         document
           .querySelectorAll(
             `#${STAT_LABELS.view.id}, #${STAT_LABELS.back.id}, #${STAT_LABELS.del.id}, .game > section`
@@ -261,7 +266,7 @@ function addGameStatEventListeners() {
       })
     })
 
-  // Eliminar estadísticas
+  // Eliminar estadísticas del juego
   document
     .getElementById(STAT_LABELS.del.id)
     .addEventListener('click', function () {
@@ -287,9 +292,9 @@ function addGameBoardEventListeners() {
         cell.classList[cell.classList.length - 1].replace('c', '')
       )
 
-      if (!startedGame) {
+      if (!isStartedGame) {
         showAlertDialog('Inicia una nueva partida')
-      } else if (humTurn && board[humCell].token === null) {
+      } else if (isHumTurn && board[humCell].token === null) {
         board[humCell].token = playerToken.hum
         printBoard(TOKENS)
 
@@ -311,13 +316,13 @@ function addGameConfigEventListeners() {
   document
     .querySelector('.btn[type="submit"]')
     .addEventListener('click', function () {
-      if (startedGame) {
+      if (isStartedGame) {
         showConfirmDialog(
           'Ya has iniciado una partida. ¿Deseas reiniciar el juego? No se guardará la información sobre la partida en curso',
           resetGame
         )
       } else {
-        if (isInitializedGameSettings() && !humTurn) {
+        if (isInitializedGameSettings() && !isHumTurn) {
           playComTurn()
         }
       }
@@ -337,7 +342,7 @@ function printStats() {
     } else {
       tbody.innerHTML = ''
 
-      // Se listan las estadísticas en orden descendente de fecha
+      // Se listan las estadísticas del juego en orden descendente de fecha
       for (const stat of localStorageStats.reverse()) {
         tbody.innerHTML += `<tr><td headers="${STAT_HEADERS.date.id}">${
           stat.date
@@ -382,7 +387,7 @@ function isInitializedGameSettings() {
   playerToken.hum = token.value
   playerToken.com =
     playerToken.hum === TOKENS.cross.id ? TOKENS.nought.id : TOKENS.cross.id
-  humTurn = gameSettings.initialTurn =
+  isHumTurn = gameSettings.initialTurn =
     turn.value === YES_NO.yes.id ? true : false
 
   document.getElementById('submit').childNodes.forEach((child) => {
@@ -391,7 +396,7 @@ function isInitializedGameSettings() {
 
   printTurn()
 
-  startedGame = true
+  isStartedGame = true
 
   return true
 }
@@ -399,7 +404,7 @@ function isInitializedGameSettings() {
 // Función que muestra a quién corresponde el turno en los mensajes del juego
 function printTurn() {
   printMessage(
-    humTurn
+    isHumTurn
       ? `Tu turno ( juegas con ${getImgTag(TOKENS[playerToken.hum])} )`
       : `Turno del oponente ( juega con ${getImgTag(TOKENS[playerToken.com])} )`
   )
@@ -407,10 +412,10 @@ function printTurn() {
 
 // Función que cambia el turno de cada jugador durante una partida
 function changeTurn() {
-  humTurn = !humTurn
+  isHumTurn = !isHumTurn
   printTurn()
 
-  if (!humTurn) {
+  if (!isHumTurn) {
     playComTurn()
   }
 }
@@ -563,8 +568,8 @@ function endGame(winnerPlayer) {
 
 // Función que reinicia el juego
 function resetGame() {
-  startedGame = false
-  // humTurn = false
+  isStartedGame = false
+  // isHumTurn = false
   turnCounter = 0
 
   // Reinicio del tablero de juego

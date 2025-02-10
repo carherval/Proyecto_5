@@ -31,7 +31,7 @@ export function getHiddenButtonLink(id, statLabel) {
 
 /**
  * Función que devuelve las estadísticas de las partidas almacenadas en el local storage
- * @returns Estadísticas almacenadas en el local storage
+ * @returns Estadísticas de las partidas almacenadas en el local storage
  */
 function getStats() {
   return JSON.parse(localStorage.getItem(LOCAL_STORAGE_STAT_KEY))
@@ -41,7 +41,7 @@ function getStats() {
  * Función que devuelve las estadísticas de las partidas almacenadas en el local storage filtradas por un valor de propiedad
  * @param {String} property Propiedad por la que filtrar las estadísticas
  * @param {*} value Valor de property por la que filtrar las estadísticas
- * @returns Filtrado de las estadísticas almacenadas en el local storage o nulo si no están almacenadas
+ * @returns Filtrado de las estadísticas de las partidas almacenadas en el local storage o nulo si no están almacenadas
  */
 export function getStatsByProperty(property, value) {
   const localStorageStats = getStats()

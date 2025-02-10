@@ -134,10 +134,8 @@ const gameTime = { start: null, end: null }
 
 // Dificultad del juego
 let gameDifficulty = DIFFICULTIES.medium.id
-
 // Indicador de partida iniciada
-let startedGame = false
-
+let isStartedGame = false
 // Intervalo para el contador de tiempo
 let interval = null
 
@@ -180,7 +178,7 @@ function getGameStatContent() {
 }
 
 /**
- * Función que devuelve el contenido de la botonera de las estadísticas
+ * Función que devuelve el contenido de la botonera de las estadísticas del juego
  * @returns Código HTML
  */
 function getStatButtonBoxContent() {
@@ -201,7 +199,7 @@ function getStatTableContent() {
   let statTables = '<section class="flex stats oculto">'
 
   for (const difficulty in DIFFICULTIES) {
-    statTables += `<article class="flex" id="${DIFF_ID}-${difficulty}"><table summary="Estadísticas almacenadas para la dificultad ${DIFFICULTIES[
+    statTables += `<article class="flex" id="${DIFF_ID}-${difficulty}"><table summary="Estadísticas almacenadas de las partidas para la dificultad ${DIFFICULTIES[
       difficulty
     ].title.toLowerCase()}"><caption><h2>Dificultad ${DIFFICULTIES[
       difficulty
@@ -258,9 +256,7 @@ function getNoStatsRow(idPrefix) {
  * @returns Código HTML
  */
 function getGameConfigAndBoardContent() {
-  return `<section class="flex config-board">${getGameConfigContent()}${getGameBoardContent(
-    board
-  )}</section>`
+  return `<section class="flex config-board">${getGameConfigContent()}${getGameBoardContent()}</section>`
 }
 
 /**
@@ -291,6 +287,11 @@ function addGameStatEventListeners() {
     .querySelectorAll(`#${STAT_LABELS.view.id}, #${STAT_LABELS.back.id}`)
     .forEach((elem) => {
       elem.addEventListener('click', function () {
+        // Se actualiza el contenido de las tablas de las estadísticas del juego en el caso de que el local storage sea eliminado manualmente
+        if (elem.id === STAT_LABELS.view.id) {
+          printStats()
+        }
+
         document
           .querySelectorAll(
             `#${STAT_LABELS.view.id}, #${STAT_LABELS.back.id}, #${STAT_LABELS.del.id}, .game > section`
@@ -301,7 +302,7 @@ function addGameStatEventListeners() {
       })
     })
 
-  // Eliminar estadísticas
+  // Eliminar estadísticas del juego
   document
     .getElementById(STAT_LABELS.del.id)
     .addEventListener('click', function () {
@@ -322,7 +323,7 @@ function doStatDeleteActions() {
 function addGameBoardEventListeners() {
   document.querySelectorAll('.flip-card-back').forEach((card) => {
     card.addEventListener('click', function () {
-      if (!startedGame) {
+      if (!isStartedGame) {
         showAlertDialog('Inicia una nueva partida')
       } else if (!isFullCardPair()) {
         // Se descubre la carta y se almacena formando parte de la pareja de cartas descubiertas
@@ -354,7 +355,7 @@ function addGameConfigEventListeners() {
   document
     .querySelector('.btn[type="submit"]')
     .addEventListener('click', function () {
-      if (startedGame) {
+      if (isStartedGame) {
         showConfirmDialog(
           'Ya has iniciado una partida. ¿Deseas reiniciar el juego? No se guardará la información sobre la partida en curso',
           resetGame
@@ -365,9 +366,10 @@ function addGameConfigEventListeners() {
       }
     })
 
+  // Dificultad del juego
   document.querySelectorAll(`input[name="${DIFF_ID}"]`).forEach((elem) => {
     elem.addEventListener('click', function () {
-      if (!startedGame) {
+      if (!isStartedGame) {
         gameDifficulty = elem.value
 
         createBoard()
@@ -380,51 +382,16 @@ function addGameConfigEventListeners() {
   })
 }
 
-/**
- * Función que comprueba si las cartas de la pareja descubierta son iguales
- * @param {Boolean} isDelay Indica si hay tiempo de espera para comprobar la pareja de cartas descubiertas
- */
-function checkPair(isDelay) {
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-
-  const checkPairAsync = async () => {
-    // Tiempo de espera (milisegundos) para comprobar la pareja de cartas descubiertas
-    if (isDelay) {
-      await delay(500)
-    }
-
-    for (const card of cardPair) {
-      const elem = document.getElementById(`${card.pos}`)
-
-      elem.childNodes.forEach((child) => {
-        // Si las cartas de la pareja no son iguales se vuelven a ocultar
-        // Si las cartas de la pareja son iguales se dejan descubiertas y se marcan como tal
-        if (!isSameCardInCardPair()) {
-          child.classList.toggle('oculto')
-          child.parentElement.title = CARD_REVERSE.title
-        } else {
-          board[card.pos].flipped = true
-        }
-      })
-    }
-
-    // En cualquier caso, se vuelve a reiniciar la pareja de cartas descubiertas
-    resetCardPair()
-  }
-
-  checkPairAsync()
-}
-
 /* Estadísticas del juego */
 
 // Función que rellena el contenido de las tablas de las estadísticas del juego
 function printStats() {
   for (const difficulty in DIFFICULTIES) {
     const localStorageStats = getStatsByProperty(DIFF_ID, difficulty)
-    const tbody = document.querySelector(`#diff-${difficulty} tbody`)
+    const tbody = document.querySelector(`#${DIFF_ID}-${difficulty} tbody`)
 
     // Mejor tiempo obtenido en cada dificultad del juego
-    let bestTime = 0
+    let bestTime = Math.max
 
     if (localStorageStats === null || localStorageStats.length === 0) {
       tbody.innerHTML = getNoStatsRow(difficulty[0])
@@ -435,7 +402,7 @@ function printStats() {
 
       tbody.innerHTML = ''
 
-      // Se listan las estadísticas en orden descendente de fecha
+      // Se listan las estadísticas del juego en orden descendente de fecha
       for (const stat of localStorageStats.reverse()) {
         // Se marcan con un color diferente las filas que registran el mejor tiempo obtenido en cada dificultad del juego
         tbody.innerHTML += `<tr${
@@ -450,9 +417,13 @@ function printStats() {
     }
 
     document.querySelector(
-      `#diff-${difficulty} caption > span`
+      `#${DIFF_ID}-${difficulty} caption > span`
     ).innerHTML = `Mejor tiempo: ${
-      bestTime != 0 ? getFormattedTime(bestTime) : '--:--:--'
+      bestTime != Math.max
+        ? getFormattedTime(bestTime)
+        : IS_HOURS
+        ? '--:--:--'
+        : '--:--'
     }`
   }
 }
@@ -503,7 +474,42 @@ function initGameSettings() {
     child.innerHTML = 'Reiniciar juego'
   })
 
-  startedGame = true
+  isStartedGame = true
+}
+
+/**
+ * Función que comprueba si las cartas de la pareja descubierta son iguales
+ * @param {Boolean} isDelay Indica si hay tiempo de espera para comprobar la pareja de cartas descubiertas
+ */
+function checkPair(isDelay) {
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+  const checkPairAsync = async () => {
+    // Tiempo de espera (milisegundos) para comprobar la pareja de cartas descubiertas
+    if (isDelay) {
+      await delay(500)
+    }
+
+    for (const card of cardPair) {
+      const elem = document.getElementById(`${card.pos}`)
+
+      elem.childNodes.forEach((child) => {
+        // Si las cartas de la pareja son iguales se dejan descubiertas y se marcan como tal
+        // Si las cartas de la pareja no son iguales se vuelven a ocultar
+        if (isSameCardInCardPair()) {
+          board[card.pos].flipped = true
+        } else {
+          child.classList.toggle('oculto')
+          child.parentElement.title = CARD_REVERSE.title
+        }
+      })
+    }
+
+    // En cualquier caso, se vuelve a reiniciar la pareja de cartas descubiertas
+    resetCardPair()
+  }
+
+  checkPairAsync()
 }
 
 // Función que finaliza una partida
@@ -517,7 +523,9 @@ function endGame() {
   // El tiempo mostrado en el mensaje del juego tiene que ser el mismo que el tiempo mostrado en el mensaje emergente de alerta
   printMessage(getFormattedTime(millisecs))
   showAlertDialogWithActions(
-    `Tu tiempo ha sido de ${getFormattedTime(millisecs)}`,
+    `Has descubierto todas las parejas. Tu tiempo ha sido de ${getFormattedTime(
+      millisecs
+    )}`,
     resetGame
   )
   saveStats(gameDifficulty, millisecs)
@@ -526,7 +534,7 @@ function endGame() {
 
 // Función que reinicia el juego
 function resetGame() {
-  startedGame = false
+  isStartedGame = false
 
   // Reinicio de la configuración del juego
   gameDifficulty = document.querySelector(
