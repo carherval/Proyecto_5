@@ -1,0 +1,32 @@
+/* Tablero de juego */
+/* Estilos responsive */
+.board > div {
+  flex-wrap: wrap;
+}
+
+/* Carta */
+.board .flip-card {
+  width: 8.25rem;
+  height: 8.25rem;
+  border: var(--black-thick-border);
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+/* Carta descubierta */
+.board .flip-card-front {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--white-color);
+}
+
+/* Carta oculta */
+.board .flip-card-back {
+  padding: 0.5rem;
+  background-color: var(--black-color);
+}
+
+.board .flip-card img {
+  width: 100%;
+  background-color: transparent;
+}

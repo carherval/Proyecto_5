@@ -1,0 +1,138 @@
+/* Fuente */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+/* Variables */
+:root {
+  --black-color: rgb(0, 0, 0);
+  --white-color: rgb(255, 255, 255);
+  --blue1-color: rgb(47, 85, 151);
+  --blue2-color: rgb(107, 155, 193);
+  --black-thin-border: 0.25rem solid var(--black-color);
+  --white-border: 0.5rem solid var(--white-color);
+}
+
+/* Tamaño de la fuente */
+@media screen and (max-width: 425px) {
+  :root {
+    font-size: 6px;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 1440px) {
+  :root {
+    font-size: 9px;
+  }
+}
+
+@media screen and (min-width: 1441px) and (max-width: 2559px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  :root {
+    font-size: 9px;
+  }
+}
+
+/* Estilos generales iniciales */
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  color: var(--black-color);
+  background-color: var(--blue1-color);
+}
+
+/* Estilos responsive iniciales */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+/* Estilos generales */
+.negrita {
+  font-weight: bold;
+}
+
+/* Anchura mínima */
+body {
+  min-width: 426px;
+}
+
+/* Encabezados */
+h1 {
+  font-size: 3.5rem;
+  color: var(--white-color);
+}
+
+/* Listas */
+li {
+  list-style-type: none;
+}
+
+/* Enlaces */
+a {
+  text-decoration: none;
+}
+
+/* Menú */
+.menu {
+  padding: 2.5rem 0;
+  background-color: var(--blue2-color);
+  /* Estilos responsive */
+  flex-direction: column;
+  justify-content: start;
+}
+
+.menu * {
+  background-color: var(--blue2-color);
+}
+
+.menu > nav {
+  width: 100%;
+}
+
+/* Estilos responsive */
+.menu > nav > ul {
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .menu > nav li {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 2559px) {
+  .menu > nav li {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .menu > nav li {
+    width: 25%;
+  }
+}
+
+.btn-lnk {
+  border: var(--black-thin-border);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  font-size: 2rem;
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+.btn-lnk:active {
+  box-shadow: 5px 5px 10px var(--black-color);
+}

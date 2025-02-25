@@ -1,0 +1,335 @@
+/* Fuente */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+/* Variables */
+:root {
+  --black-color: rgb(0, 0, 0);
+  --white-color: rgb(255, 255, 255);
+  --blue1-color: rgb(47, 85, 151);
+  --blue2-color: rgb(107, 155, 193);
+  --blue3-color: rgb(223, 230, 244);
+  --black-thick-border: 0.5rem solid var(--black-color);
+  --black-thin-border: 0.25rem solid var(--black-color);
+  --white-border: 0.5rem solid var(--white-color);
+  --blue1-border: 0.5rem solid var(--blue1-color);
+}
+
+/* Tamaño de la fuente */
+@media screen and (max-width: 425px) {
+  :root {
+    font-size: 6px;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 1440px) {
+  :root {
+    font-size: 9px;
+  }
+}
+
+@media screen and (min-width: 1441px) and (max-width: 2559px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  :root {
+    font-size: 9px;
+  }
+}
+
+/* Estilos generales iniciales */
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  color: var(--black-color);
+  background-color: var(--blue1-color);
+}
+
+/* Estilos responsive iniciales */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.grid {
+  display: grid;
+}
+
+@media screen and (max-width: 425px) {
+  .grid {
+    gap: 0.75rem;
+  }
+}
+
+@media screen and (min-width: 426px) {
+  .grid {
+    gap: 0.5rem;
+  }
+}
+
+/* Estilos generales */
+.oculto {
+  display: none;
+}
+
+.negrita {
+  font-weight: bold;
+}
+
+/* Anchura mínima */
+body {
+  min-width: 426px;
+}
+
+/* Encabezados */
+h1 {
+  font-size: 3.5rem;
+  color: var(--white-color);
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Tablas */
+caption {
+  font-weight: bold;
+}
+
+/* Enlaces */
+a {
+  text-decoration: none;
+}
+
+/* Zona de juego */
+.game {
+  padding: 2.5rem 0;
+  background-color: var(--blue2-color);
+  /* Estilos responsive */
+  flex-direction: column;
+  justify-content: start;
+}
+
+.game * {
+  background-color: var(--blue2-color);
+}
+
+/* Secciones de la zona de juego */
+@media screen and (max-width: 768px) {
+  .game > section {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 2559px) {
+  .game > section {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .game > section {
+    width: 25%;
+  }
+}
+
+/* Estadísticas del juego */
+/* Botonera de las estadísticas */
+@media screen and (max-width: 768px) {
+  .game > nav {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 2559px) {
+  .game > nav {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .game > nav {
+    width: 25%;
+  }
+}
+
+.game > nav li {
+  width: 100%;
+}
+
+/* Estilos responsive */
+.stats {
+  flex-direction: column;
+}
+
+/* Tablas de las estadísticas */
+.stats > article {
+  width: 100%;
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+.stats table {
+  width: 100%;
+  border: var(--black-thick-border);
+  border-top: var(--black-thin-border);
+  border-collapse: collapse;
+}
+
+.stats caption {
+  border: var(--black-thick-border);
+  border-bottom: var(--black-thin-border);
+  padding: 1rem;
+  background-color: var(--white-color);
+}
+
+.stats caption * {
+  background-color: var(--white-color);
+}
+
+.stats tr > * {
+  width: 50%;
+  border: var(--black-thin-border);
+  padding: 1rem;
+  text-wrap-mode: nowrap;
+}
+
+.stats th {
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+/* Filas impares */
+.stats tr:nth-child(odd) > td {
+  background-color: var(--white-color);
+}
+
+/* Filas pares */
+.stats tr:nth-child(even) > td {
+  background-color: var(--blue3-color);
+}
+
+/* Filas destacadas */
+.stats tr.highlighted > td {
+  background-color: var(--blue2-color);
+}
+
+/* Configuración y tablero de juego */
+/* Estilos responsive */
+.config-board {
+  flex-direction: column;
+}
+
+/* Configuración del juego */
+.config {
+  width: 100%;
+}
+
+.config > form {
+  width: 100%;
+  /* Estilos responsive */
+  align-items: baseline;
+}
+
+.config fieldset {
+  width: 100%;
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+.config fieldset > * {
+  width: 100%;
+}
+
+.config legend {
+  padding-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Estilos responsive */
+.config fieldset > div {
+  justify-content: space-between;
+}
+
+/* Tablero de juego */
+@media screen and (max-width: 425px) {
+  .board .grid > div {
+    width: 25rem;
+    height: 25rem;
+  }
+
+  .board div.green,
+  .board div.active-green {
+    border-radius: 25rem 5rem 5rem;
+  }
+
+  .board div.red,
+  .board div.active-red {
+    border-radius: 5rem 25rem 5rem 5rem;
+  }
+
+  .board div.yellow,
+  .board div.active-yellow {
+    border-radius: 5rem 5rem 5rem 25rem;
+  }
+
+  .board div.blue,
+  .board div.active-blue {
+    border-radius: 5rem 5rem 25rem;
+  }
+}
+
+/* Mensajes emergentes de SweetAlert2 */
+.swal2-popup {
+  border: var(--blue1-border);
+  background-color: var(--white-color);
+  position: fixed;
+}
+
+@media screen and (max-width: 425px) {
+  .swal2-popup {
+    top: 40rem;
+  }
+}
+
+@media screen and (min-width: 426px) {
+  .swal2-popup {
+    top: 30rem;
+  }
+}
+
+.swal2-title {
+  color: var(--blue1-color);
+  background-color: var(--white-color);
+}
+
+.swal2-actions {
+  background-color: var(--white-color);
+  /* Estilos responsive */
+  gap: 2rem;
+}
+
+.swal2-confirm,
+.swal2-confirm:hover {
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+.swal2-cancel,
+.swal2-cancel:hover {
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}

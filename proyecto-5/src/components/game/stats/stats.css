@@ -1,0 +1,14 @@
+/* Estadísticas del juego */
+/* Botonera de las estadísticas */
+.btn-lnk {
+  border: var(--black-thin-border);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  font-size: 2rem;
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+.btn-lnk:active {
+  box-shadow: 5px 5px 10px var(--black-color);
+}

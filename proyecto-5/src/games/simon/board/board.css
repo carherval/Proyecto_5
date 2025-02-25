@@ -1,0 +1,75 @@
+/* Tablero de juego */
+/* Variables */
+:root {
+  --green-color: #5bbf3a;
+  --active-green-color: #7cfc00;
+  --red-color: #c0392b;
+  --active-red-color: #ff4500;
+  --yellow-color: #d4ac0d;
+  --active-yellow-color: #ffff00;
+  --blue-color: #2e86c1;
+  --active-blue-color: #00bfff;
+}
+
+/* Estilos responsive */
+.board > div {
+  grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+  grid-template-areas:
+    '_green _red'
+    '_yellow _blue';
+}
+
+.board > div > div {
+  width: 17.75rem;
+  height: 17.75rem;
+  border: var(--black-thick-border);
+  cursor: pointer;
+}
+
+.board .green,
+.board .active-green {
+  border-radius: 17.75rem 3rem 3rem;
+  background-color: var(--green-color);
+  /* Estilos responsive */
+  grid-area: _green;
+}
+
+.board .active-green:active {
+  background-color: var(--active-green-color);
+}
+
+.board .red,
+.board .active-red {
+  border-radius: 3rem 17.75rem 3rem 3rem;
+  background-color: var(--red-color);
+  /* Estilos responsive */
+  grid-area: _red;
+}
+
+.board .active-red:active {
+  background-color: var(--active-red-color);
+}
+
+.board .yellow,
+.board .active-yellow {
+  border-radius: 3rem 3rem 3rem 17.75rem;
+  background-color: var(--yellow-color);
+  /* Estilos responsive */
+  grid-area: _yellow;
+}
+
+.board .active-yellow:active {
+  background-color: var(--active-yellow-color);
+}
+
+.board .blue,
+.board .active-blue {
+  border-radius: 3rem 3rem 17.75rem;
+  background-color: var(--blue-color);
+  /* Estilos responsive */
+  grid-area: _blue;
+}
+
+.board .active-blue:active {
+  background-color: var(--active-blue-color);
+}
