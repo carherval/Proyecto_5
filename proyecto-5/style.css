@@ -7,8 +7,14 @@
   --white-color: rgb(255, 255, 255);
   --blue1-color: rgb(47, 85, 151);
   --blue2-color: rgb(107, 155, 193);
+  --blue3-color: rgb(223, 230, 244);
+  --black-thick-border: 0.5rem solid var(--black-color);
   --black-thin-border: 0.25rem solid var(--black-color);
   --white-border: 0.5rem solid var(--white-color);
+  --blue1-border: 0.5rem solid var(--blue1-color);
+  --white-filter: invert(1);
+  --blue1-filter: brightness(0) saturate(100%) invert(33%) sepia(26%)
+    saturate(1414%) hue-rotate(179deg) brightness(87%) contrast(93%);
 }
 
 /* Tamaño de la fuente */
@@ -58,7 +64,15 @@
   gap: 2rem;
 }
 
+.grid {
+  display: grid;
+}
+
 /* Estilos generales */
+.oculto {
+  display: none;
+}
+
 .negrita {
   font-weight: bold;
 }
@@ -72,6 +86,16 @@ body {
 h1 {
   font-size: 3.5rem;
   color: var(--white-color);
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Tablas */
+caption {
+  font-weight: bold;
 }
 
 /* Listas */
@@ -135,4 +159,34 @@ a {
 
 .btn-lnk:active {
   box-shadow: 5px 5px 10px var(--black-color);
+}
+
+/* Mensajes emergentes de SweetAlert2 */
+.swal2-popup {
+  border: var(--blue1-border);
+  background-color: var(--white-color);
+  position: fixed;
+}
+
+.swal2-title {
+  color: var(--blue1-color);
+  background-color: var(--white-color);
+}
+
+.swal2-actions {
+  background-color: var(--white-color);
+  /* Estilos responsive */
+  gap: 2rem;
+}
+
+.swal2-confirm,
+.swal2-confirm:hover {
+  color: var(--white-color);
+  background-color: var(--blue1-color);
+}
+
+.swal2-cancel,
+.swal2-cancel:hover {
+  color: var(--white-color);
+  background-color: var(--blue1-color);
 }
